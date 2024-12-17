@@ -1,4 +1,4 @@
-package org.example.company;
+package org.example.exercises.company;
 
 import java.util.ArrayList;
 import java.util.List;

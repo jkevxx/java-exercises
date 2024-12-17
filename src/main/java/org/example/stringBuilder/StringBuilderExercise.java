@@ -1,4 +1,4 @@
-package org.example.string_builder;
+package org.example.stringBuilder;
 
 public class StringBuilderExercise {
 

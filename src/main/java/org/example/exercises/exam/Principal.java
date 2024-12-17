@@ -2,7 +2,7 @@
  * https://youtu.be/utvV8syEYLw?si=4raWFd8HyQEuSUdE
  */
 
-package org.example.exam;
+package org.example.exercises.exam;
 
 public class Principal {
 

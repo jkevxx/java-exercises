@@ -1,6 +1,4 @@
-package org.example.exam;
-
-import java.time.LocalDate;
+package org.example.exercises.exam;
 
 public abstract class Exam implements Approvable{
 

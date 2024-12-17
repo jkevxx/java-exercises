@@ -1,4 +1,4 @@
-package org.example.exam;
+package org.example.exercises.exam;
 
 public class WrittenExam extends Exam {
 

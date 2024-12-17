@@ -2,7 +2,7 @@
  * https://youtu.be/gHy4Ls7E49c?si=U0R026maCFbEg46B
  */
 
-package org.example.company;
+package org.example.exercises.company;
 
 public class Principal {
 

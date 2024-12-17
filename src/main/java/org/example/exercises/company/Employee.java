@@ -1,4 +1,4 @@
-package org.example.company;
+package org.example.exercises.company;
 
 import java.time.LocalDate;
 
