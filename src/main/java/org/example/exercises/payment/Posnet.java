@@ -1,4 +1,4 @@
-package org.example.projects.payment;
+package org.example.exercises.payment;
 
 public class Posnet {
 	public static final double CHARGEBYDUES = 0.03;
