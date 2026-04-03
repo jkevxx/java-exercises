@@ -4,10 +4,20 @@ import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * Demonstrates the use of the Function functional interface to decouple 
+ * Demonstrates the use of the Function functional interface to decouple
  * object transformation logic from the core business process.
  */
+
 public class FunctionInterface {
+
+    /**
+     * - What do functions (with a capital F) do?
+     * - Allow us to convert one thing to another...
+     * - So let's see an example:
+     *    - Say we are a HR system
+     *    - We want to allow different companies using our software to be able to specify how they generate an employee id
+     *    - We can use a function for that
+     */
 
     // Predefined ID generation strategies for reuse and clarity
     public static final Function<Person, String> EMAIL_UPPERCASE = p -> p.getEmail().toUpperCase();
@@ -25,7 +35,7 @@ public class FunctionInterface {
         Objects.requireNonNull(idMapper, "ID Mapper function cannot be null");
 
         Employee employee = new Employee(person.getName(), person.getEmail());
-        employee.setEmployeeId(idMapper.apply(person));
+        employee.setEmployeeId(idMapper.apply(person)); // Here we apply the logic we receive as a parameter
         return employee;
     }
 
