@@ -15,5 +15,9 @@ public class Main {
         // Supplier Interface examples
         System.out.println("\n--- Supplier Interface Examples ---");
         SupplierInterface.runExamples();
+
+        // Consumer Interface examples
+        System.out.println("\n--- Consumer Interface Examples ---");
+        ConsumerInterface.runExamples();
     }
 }

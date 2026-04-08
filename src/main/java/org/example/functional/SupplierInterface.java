@@ -47,8 +47,6 @@ public class SupplierInterface {
         Employee invalidEmployee = new Employee(); // No email set
         Employee validEmployee = new Employee("Kevin", "kevin@example.com");
 
-        System.out.println("--- Supplier Examples ---");
-
         // Example 1: Using a predefined constant supplier
         createAccount(invalidEmployee, DEFAULT_ERROR);
 
