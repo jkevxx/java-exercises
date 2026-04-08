@@ -45,19 +45,38 @@ public class ConsumerInterface {
 
         // Example 1: Using a predefined basic logger
         logEmployee(sampleEmployee, BASIC_LOGGER);
+        /*
+        * OUTPUT:
+        * --- Executing Log Operation ---
+        * Employee: Kevin
+        * */
 
         // Example 2: Using a predefined detailed logger
         logEmployee(sampleEmployee, DETAILED_LOGGER);
+        /*
+         * OUTPUT:
+         * --- Executing Log Operation ---
+         * Detailed Log -> Name: Kevin | Email: kevin@example.com | ID: EMP-001
+         * */
 
         // Example 3: Using Consumer composition with 'andThen'
         // This executes the first consumer and then the second one
         System.out.println("--- Chained Consumers ---");
         Consumer<Employee> combinedLogger = BASIC_LOGGER.andThen(e -> System.out.println("Logging timestamp: " + java.time.LocalDateTime.now()));
         logEmployee(sampleEmployee, combinedLogger);
+        /*
+        * --- Executing Log Operation ---
+        * Employee: Kevin
+        * Logging timestamp: 2026-04-07T19:54:02.022032
+        * */
 
         // Example 4: Using an inline lambda for custom logic
         logEmployee(sampleEmployee, e -> {
             System.out.println("Custom Log: Sending notification to " + e.getEmail());
         });
+        /*
+         * --- Executing Log Operation ---
+         * Custom Log: Sending notification to kevin@example.com
+         * */
     }
 }

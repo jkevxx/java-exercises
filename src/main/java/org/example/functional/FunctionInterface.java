@@ -48,13 +48,26 @@ public class FunctionInterface {
         // Example 1: Using a predefined strategy
         Employee emp1 = createEmployee(samplePerson, EMAIL_UPPERCASE);
         System.out.println("Company 1 (Email UpperCase): " + emp1);
+        /*
+         * OUTPUT:
+        * Company 1 (Email UpperCase): Employee [ Id: KEVIN.PAEZ1010@GMAIL.COM, name: Kevin Paez, email: kevin.paez1010@gmail.com]
+        * */
+
 
         // Example 2: Using an inline lambda for custom logic
         Employee emp2 = createEmployee(samplePerson, EMAIL_AND_NAME);
         System.out.println("Company 2 (Email + Name): " + emp2);
+        /*
+         * OUTPUT:
+         * Company 2 (Email + Name): Employee [ Id: kevin.paez1010@gmail.com_KevinPaez, name: Kevin Paez, email: kevin.paez1010@gmail.com]
+         * */
         
         // Example 3: Using a custom complex logic via method reference or lambda
         Employee emp3 = createEmployee(samplePerson, p -> "EMP-" + System.currentTimeMillis() + "-" + p.getName().hashCode());
         System.out.println("Company 3 (Complex Random ID): " + emp3);
+        /*
+         * OUTPUT:
+         * Company 3 (Complex Random ID): Employee [ Id: EMP-1775613242005-1650116325, name: Kevin Paez, email: kevin.paez1010@gmail.com]
+         * */
     }
 }

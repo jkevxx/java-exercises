@@ -49,11 +49,23 @@ public class SupplierInterface {
 
         // Example 1: Using a predefined constant supplier
         createAccount(invalidEmployee, DEFAULT_ERROR);
+        /*
+         * OUTPUT:
+         * LOG: Error: Employee details are missing.
+        * */
 
         // Example 2: Using a lazy timestamped supplier (only evaluated on failure)
         createAccount(invalidEmployee, TIMESTAMPED_ERROR);
+        /*
+         * OUTPUT:
+         * LOG: Validation failed at: 2026-04-07T19:54:02.019788
+         * */
 
         // Example 3: Using an inline lambda for custom context-aware messages
         createAccount(validEmployee, () -> "Failed to create account for " + validEmployee.getName());
+        /*
+         * OUTPUT:
+         * Account created successfully for: Kevin
+         * */
     }
 }
