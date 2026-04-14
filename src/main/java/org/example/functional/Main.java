@@ -23,5 +23,9 @@ public class Main {
         // Consumer Interface examples
         System.out.println("\n--- Consumer Interface Examples ---");
         ConsumerInterface.runExamples();
+
+        // Predicate Interface examples
+        System.out.println("\n--- Predicate Interface Examples ---");
+        PredicateInterface.runExamples();
     }
 }
