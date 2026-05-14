@@ -1,17 +1,24 @@
 package org.example.testing;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ExampleTest {
 
-    Example example = new Example();
+    private Example example;
+
+    @BeforeEach
+    public void init(){
+        this.example = new Example();
+    }
 
     @Test
-    void add() {
+    void testAdd() {
         // Given
         int a = 3;
         int b = 8;
@@ -25,20 +32,29 @@ class ExampleTest {
     }
 
     @Test
-    void checkPositive() {
+    void testCheckPositive() {
         boolean value = example.checkPositive(3);
 
         assertTrue(value);
     }
 
     @Test
-    void countLetters() {
+    void testCheckPositiveError(){
+        int number = -4;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            example.checkPositive(number);
+        });
+    }
+
+    @Test
+    void testCountLetters() {
         int total = example.countLetters("java language");
         assertEquals(4, total);
     }
 
     @Test
-    void hasElement() {
+    void testHasElement() {
         List<String> myList = List.of("Apple", "Banana", "Mango", "Watermelon");
         boolean value = example.hasElement(myList, "Apple");
 
@@ -46,52 +62,85 @@ class ExampleTest {
     }
 
     @Test
-    void revertText() {
+    void testRevertText() {
         String letter = example.revertText("mango");
 
         assertEquals("ognam", letter);
     }
 
     @Test
-    void factorial() {
-
+    void testFactorial() {
         long num = example.factorial(5);
 
         assertEquals(120, num);
-
     }
 
     @Test
-    void isPrime() {
+    void testFactorialError(){
+        int num = -6;
 
-        boolean value1 = example.isPrime(4);
-        assertFalse(value1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            example.factorial(num);
+        });
+    }
 
+    @Test
+    void testIsPrime() {
         boolean value2 = example.isPrime(11);
         assertTrue(value2);
     }
 
     @Test
-    void messageWithDelay() throws InterruptedException {
+    void testIsPrimeLessThanOne() {
+        boolean value1 = example.isPrime(1);
+        assertFalse(value1);
+    }
 
+    @Test
+    void testIsNotPrime() {
+        boolean value1 = example.isPrime(4);
+        assertFalse(value1);
+    }
+
+    @Test
+    void testMessageWithDelay() throws InterruptedException {
         String value = example.messageWithDelay();
-
+        assertEquals("Ready after delay", value);
     }
 
     @Test
     void convertToString() {
-
         List<Integer> myList = List.of(1,2,3,4);
 
         List<String> myStringList = example.convertToString(myList);
-
-        //assertInstanceOf(String, myStringList);
-
-
+        assertEquals(List.of("1", "2", "3", "4"), myStringList);
     }
 
     @Test
-    void calculateMiddle() {
+    void testCalculateMiddle() {
+        List<Integer> numbers = List.of(1,2,3);
+
+        double result = example.calculateMiddle(numbers);
+
+        assertEquals(2, result);
+    }
+
+    @Test
+    void testCalculateMiddleNull() {
+        List<Integer> numbers = null;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+           example.calculateMiddle(numbers);
+        });
+    }
+
+    @Test
+    void testCalculateMiddleEmpty() {
+        List<Integer> numbers = Collections.emptyList();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            example.calculateMiddle(numbers);
+        });
     }
 
     @Test
