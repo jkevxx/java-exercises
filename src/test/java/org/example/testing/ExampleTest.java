@@ -144,6 +144,10 @@ class ExampleTest {
     }
 
     @Test
-    void convertListToString() {
+    void testConvertListToString() {
+        List<String> letters = List.of("Tony", "Stark");
+
+        String result = example.convertListToString(letters);
+        assertEquals("TONY,STARK", result);
     }
 }
