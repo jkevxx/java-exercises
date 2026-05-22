@@ -67,6 +67,12 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/MainMock.class</exclude>
+                                <exclude>**/Player.class</exclude>
+                            </excludes>
+                        </configuration>
                     </execution>
                     <execution>
                         <id>jacoco-check</id>
