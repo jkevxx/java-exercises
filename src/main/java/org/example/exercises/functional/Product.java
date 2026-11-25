@@ -55,6 +55,6 @@ public class Product {
                 ", category='" + category + '\'' +
                 ", amount=" + amount +
                 ", price=" + price +
-                '}' + '\n';
+                '}';
     }
 }

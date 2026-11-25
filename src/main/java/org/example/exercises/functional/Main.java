@@ -1,9 +1,6 @@
 package org.example.exercises.functional;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.OptionalDouble;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -51,6 +48,28 @@ public class Main {
                 .min(Comparator.comparingDouble(Product::getPrice))
                 .orElse(null);
 
-        System.out.println(lowPrice);
+//        System.out.println(lowPrice);
+
+        //Agrupar productos por categoría
+        Map<String, List<Product>> productByCategory = products.stream()
+                .collect(Collectors.groupingBy(Product::getCategory));
+
+        /*System.out.printf("Frutas: %s%n%n", fruit.stream()
+                .map(Product::getName)
+                .toList());
+        System.out.printf("Total de lacteos: %.2f%n", total);
+        System.out.printf("Producto mas barato: %s | precio: %.2f%n%n",
+                lowPrice.getName(), lowPrice.getPrice());*/
+
+        System.out.println("Productos por categoria");
+        System.out.println("======================");
+        productByCategory.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(entry -> {
+                    System.out.printf("%n%s%n", entry.getKey().toUpperCase());
+                    entry.getValue().forEach(product -> System.out.printf(
+                            "  %-10s | cantidad: %2d | precio: %.2f%n",
+                            product.getName(), product.getAmount(), product.getPrice()));
+                });
     }
 }
