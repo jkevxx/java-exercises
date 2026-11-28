@@ -3,6 +3,10 @@ package org.example.exercises.functional;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+/*
+ * Source: https://youtu.be/ElwZJVBCnGU
+ */
 public class Main {
 
     public static void main(String[] args) {
@@ -35,13 +39,16 @@ public class Main {
                 .toList();
 
 //        System.out.println(fruit);
+        /*System.out.printf("Fruits: %s%n%n", fruit.stream()
+                .map(Product::getName)
+                .toList());*/
 
         // 2. Calcular el precio total de los productos en "lácteos"
         double total = products.stream()
                 .filter(product -> product.getCategory().equals("lácteos"))
                 .mapToDouble(Product::getPrice)
                 .sum();
-//        System.out.println("Total: " + total);
+//        System.out.printf("Total de lacteos: %.2f%n", total);
 
         // 3. Obtener el producto con el precio más bajo
         Product lowPrice = products.stream()
@@ -49,19 +56,14 @@ public class Main {
                 .orElse(null);
 
 //        System.out.println(lowPrice);
+        /*System.out.printf("Producto mas barato: %s | precio: %.2f%n%n",
+                lowPrice.getName(), lowPrice.getPrice());*/
 
-        //Agrupar productos por categoría
+        // 4. Agrupar productos por categoría
         Map<String, List<Product>> productByCategory = products.stream()
                 .collect(Collectors.groupingBy(Product::getCategory));
 
-        /*System.out.printf("Frutas: %s%n%n", fruit.stream()
-                .map(Product::getName)
-                .toList());
-        System.out.printf("Total de lacteos: %.2f%n", total);
-        System.out.printf("Producto mas barato: %s | precio: %.2f%n%n",
-                lowPrice.getName(), lowPrice.getPrice());*/
-
-        System.out.println("Productos por categoria");
+        /*System.out.println("Productos por categoria");
         System.out.println("======================");
         productByCategory.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
@@ -70,6 +72,24 @@ public class Main {
                     entry.getValue().forEach(product -> System.out.printf(
                             "  %-10s | cantidad: %2d | precio: %.2f%n",
                             product.getName(), product.getAmount(), product.getPrice()));
-                });
+                });*/
+
+        // 5. Calcular el precio promedio de los productos por categoría
+        Map<String, Double> productPriceByCategory = products.parallelStream()
+                .collect(
+                        Collectors.groupingBy(Product::getCategory,
+                        Collectors.averagingDouble(p -> p.getPrice()))
+                );
+
+        System.out.println("Price by category: "+ productPriceByCategory);
+
+        // 6. Obtener la categoría con el precio promedio más alto
+        String moreExpensiveCategory = productPriceByCategory.entrySet().parallelStream()
+                .max(Comparator.comparingDouble(Map.Entry::getValue))
+                .map(Map.Entry::getKey)
+                .orElse("Not available");
+
+        System.out.println("More expensive Category " + moreExpensiveCategory);
+
     }
 }
